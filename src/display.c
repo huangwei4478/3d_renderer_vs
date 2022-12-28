@@ -70,7 +70,7 @@ void draw_grid(void) {
 }
 
 void draw_rect(int x, int y, int width, int height, uint32_t color) {
-	SDL_assert(x < 0 || y < 0 || x + width >= SCREEN_WIDTH || y + height >= SCREEN_HEIGHT);
+	SDL_assert(x >= 0 && y >= 0 && x + width < SCREEN_WIDTH && y + height < SCREEN_HEIGHT);
 	for (int _y = y; _y < y + height; _y++) {
 		for (int _x = x; _x < x + width; _x++) {
 			draw_pixel(_x, _y, color);

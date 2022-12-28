@@ -5,6 +5,12 @@
 #include "display.h"
 #include "vector.h"
 
+#define N_POINTS (9 * 9 * 9)
+vec3_t cube_points[N_POINTS];
+vec2_t projected_points[N_POINTS];
+
+float fov_factor = 128;
+
 void setup(void) {
 	color_buffer = (uint32_t*)malloc(SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(uint32_t));
 	color_buffer_texture = SDL_CreateTexture(renderer,
@@ -12,6 +18,19 @@ void setup(void) {
 		SDL_TEXTUREACCESS_STREAMING,
 		SCREEN_WIDTH,
 		SCREEN_HEIGHT);
+	
+	int point_count = 0;
+
+	// start loading my array of vectors
+	// from -1 to 1 (in this 9 x 9 x 9 cube)
+	for (float x = -1; x <= 1; x += 0.25) {
+		for (float y = -1; y <= 1; y += 0.25) {
+			for (float z = -1; z <= 1; z += 0.25) {
+				vec3_t new_point = { .x = x, .y = y, .z = z };
+				cube_points[point_count++] = new_point;
+			}
+		}
+	}
 }
 
 void process_input(void) {
@@ -36,19 +55,45 @@ void process_input(void) {
 	}
 }
 
+// 3d vector -> projected 2d point
+vec2_t project(vec3_t point) {
+	vec2_t projected_point = {
+		.x = (fov_factor * point.x),
+		.y = (fov_factor * point.y)
+	};
+	return projected_point;
+}
+
 void update(void) {
-	// TODO:
+	for (int i = 0; i < N_POINTS; i++) {
+		vec3_t point = cube_points[i];
+
+		// project the current point
+		vec2_t projected_point = project(point);
+
+		// save the projected 2D vector in the array of projected points
+		projected_points[i] = projected_point;
+	}
 }
 
 void render(void) {
-	SDL_RenderClear(renderer);
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-
 	draw_grid();
-	draw_rect(100, 100, 100, 150, 0xFFFF0000);
-	render_color_buffer();
-	clear_color_buffer(0xFFFFFF00);
 
+	// Loop all projected points and render them
+	for (int i = 0; i < N_POINTS; i++) {
+		vec2_t projected_point = projected_points[i];
+		draw_rect(
+			projected_point.x + (SCREEN_WIDTH / 2), 
+			projected_point.y + (SCREEN_HEIGHT / 2),
+			4,
+			4,
+			0xFFFFFF00
+		);
+	}
+
+	render_color_buffer();
+
+	clear_color_buffer(0xFF000000);
 	SDL_RenderPresent(renderer);
 }
 
