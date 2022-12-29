@@ -30,7 +30,7 @@ bool initialize_window(void) {
 		SDL_WINDOWPOS_CENTERED,
 		SCREEN_WIDTH,
 		SCREEN_HEIGHT,
-		0);
+		SDL_WINDOW_BORDERLESS);
 
 	if (window == NULL) {
 		fprintf(stderr, "Error creating SDL window.\n");

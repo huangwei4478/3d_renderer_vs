@@ -8,8 +8,9 @@
 #define N_POINTS (9 * 9 * 9)
 vec3_t cube_points[N_POINTS];
 vec2_t projected_points[N_POINTS];
+vec3_t camera_position = { .x = 0, .y = 0, .z = -5 };
 
-float fov_factor = 128;
+float fov_factor = 1280;
 
 void setup(void) {
 	color_buffer = (uint32_t*)malloc(SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(uint32_t));
@@ -58,8 +59,8 @@ void process_input(void) {
 // 3d vector -> projected 2d point
 vec2_t project(vec3_t point) {
 	vec2_t projected_point = {
-		.x = (fov_factor * point.x),
-		.y = (fov_factor * point.y)
+		.x = (fov_factor * point.x) / point.z,
+		.y = (fov_factor * point.y) / point.z
 	};
 	return projected_point;
 }
@@ -67,6 +68,9 @@ vec2_t project(vec3_t point) {
 void update(void) {
 	for (int i = 0; i < N_POINTS; i++) {
 		vec3_t point = cube_points[i];
+		
+		// Move the points away from the camera
+		point.z -= camera_position.z;
 
 		// project the current point
 		vec2_t projected_point = project(point);
