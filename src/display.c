@@ -19,18 +19,12 @@ bool initialize_window(void) {
 		return false;
 	}
 
-	SDL_DisplayMode displayMode;
-	SDL_GetCurrentDisplayMode(0, &displayMode);
-
-	SCREEN_WIDTH = displayMode.w;
-	SCREEN_HEIGHT = displayMode.h;
-
 	window = SDL_CreateWindow("3D Graphics Programming",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
 		SCREEN_WIDTH,
 		SCREEN_HEIGHT,
-		SDL_WINDOW_BORDERLESS);
+		SDL_WINDOW_SHOWN);
 
 	if (window == NULL) {
 		fprintf(stderr, "Error creating SDL window.\n");
