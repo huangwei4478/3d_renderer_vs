@@ -8,6 +8,9 @@
 extern int SCREEN_WIDTH;
 extern int SCREEN_HEIGHT;
 
+#define FPS (30.0)
+#define FRAME_TARGET_TIME (1000.0 / FPS)
+
 extern bool is_running;
 extern SDL_Window* window;
 extern SDL_Renderer* renderer;
