@@ -27,12 +27,24 @@
     <ClCompile Include="src\display.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\triangle.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mesh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\vector.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="src\display.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\triangle.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mesh.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
