@@ -33,6 +33,9 @@
     <ClCompile Include="src\mesh.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\array.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\vector.h">
@@ -45,6 +48,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="src\mesh.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\array.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
