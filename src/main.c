@@ -23,7 +23,8 @@ void setup(void) {
 		SCREEN_WIDTH,
 		SCREEN_HEIGHT);
 
-	load_cube_mesh_data();
+	//load_cube_mesh_data();
+	load_obj_file_data("assets/f22.obj");
 }
 
 void process_input(void) {
@@ -76,7 +77,8 @@ void update(void) {
 	mesh.rotation.z += 0.01;
 	
 	// Loop all triangle faces of our mesh
-	for (int i = 0; i < N_CUBE_FACES; i++) {
+	int faces_count = array_length(mesh.faces);
+	for (int i = 0; i < faces_count; i++) {
 		face_t mesh_face = mesh.faces[i];
 
 		vec3_t face_vertices[3];

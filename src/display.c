@@ -2,8 +2,8 @@
 #include <stdio.h>
 
 // Screen dimension constants
-int SCREEN_WIDTH = 640;
-int SCREEN_HEIGHT = 480;
+int SCREEN_WIDTH = 1280;
+int SCREEN_HEIGHT = 960;
 
 bool is_running = false;
 SDL_Window* window = NULL;
@@ -44,7 +44,7 @@ bool initialize_window(void) {
 }
 
 void draw_pixel(int x, int y, uint32_t color) {
-	SDL_assert(x >= 0 && y >= 0 && x < SCREEN_WIDTH&& y < SCREEN_HEIGHT);
+	SDL_assert(x >= 0 && y >= 0 && x < SCREEN_WIDTH && y < SCREEN_HEIGHT);
 	color_buffer[SCREEN_WIDTH * y + x] = color;
 }
 
