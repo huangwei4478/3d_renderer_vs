@@ -24,7 +24,7 @@ void setup(void) {
 		SCREEN_HEIGHT);
 
 	//load_cube_mesh_data();
-	load_obj_file_data("assets/f22.obj");
+	load_obj_file_data("assets/cube.obj");
 }
 
 void process_input(void) {
